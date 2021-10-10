@@ -1,0 +1,18 @@
+@mixin flex-center() {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin font-sh($size:14px, $heigth:17px) {
+    font-size: $size;
+    line-height: $heigth;
+}
+@mixin box-shadow($border: 8px) {
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.135216);
+    border-radius: $border;
+}
+@mixin flex-btw() {
+    display: flex;
+    justify-content: space-between;
+}

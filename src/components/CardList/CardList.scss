@@ -1,0 +1,15 @@
+@import '../../styles/colors.scss';
+@import '../../styles/mixin.scss';
+@import '../../styles/breakpoints.scss';
+
+.cards__list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  @media (max-width: map-get($breakpoints, md)) {
+    & {
+        justify-content: space-around;
+    }
+}
+}

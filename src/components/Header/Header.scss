@@ -1,0 +1,58 @@
+@import '../../styles/colors.scss';
+@import '../../styles/mixin.scss';
+@import '../../styles/breakpoints.scss';
+
+.header {
+    margin-left: 38px;
+    margin-bottom: 13px;
+
+    &__logo {
+        display: flex;
+        align-items: center;
+        padding-bottom: 36px;
+      }
+
+    &__text {
+        font-weight: 600;
+        font-size: 48px;
+        line-height: 27px;
+        color: map-get($colors, main-color);
+        margin-left: 22px;
+      }
+    
+    &__image {
+        height: 72px;
+        width: 91px;
+      }
+
+    &-nav__text--checked {
+        @include font-sh ();
+        color: map-get($colors, main-color);
+      }
+
+    &-nav__text {
+        @include font-sh ();
+      }
+
+    &-nav__span {
+        margin: 0px 12px;
+      }
+    
+    @media (max-width: map-get($breakpoints, lg)) {
+        &__logo {
+            padding-bottom: 24px;
+        }
+    }
+
+    @media (max-width: map-get($breakpoints, md)) {
+        & {
+           display: none; 
+        }
+    }
+
+    @media (max-width: map-get($breakpoints, sm)) {
+        & {
+           display: none; 
+        }
+    }
+  }

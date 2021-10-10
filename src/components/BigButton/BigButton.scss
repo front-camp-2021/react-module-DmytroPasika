@@ -1,0 +1,16 @@
+@import '../../styles/colors.scss';
+@import '../../styles/mixin.scss';
+
+.filter-container {
+  &__btn-reset {
+    @include box-shadow();
+    background: map-get($colors, main-color);
+    margin-top: 22px;
+    width: 100%;
+}
+  &__btn-label {
+    margin: 17px 0px;
+    font-size: 18px;
+    color: map-get($colors, white);
+  }
+}
