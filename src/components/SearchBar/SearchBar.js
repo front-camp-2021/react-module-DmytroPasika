@@ -1,12 +1,30 @@
+import { 
+    useDispatch,
+    useSelector 
+} from "react-redux";
+import { FILTER_BY_SEARCH } from '../../store/actions/filter.js'
 import "./SearchBar.scss"
+import useDebounce from '../../store/helpersFn/debouncer.js'
 
 
+function SearchBar() {
+    const dispatch = useDispatch();
+    const counterProducts = useSelector(state => state.data.counterProducts)
 
-function SearchBar(props) {
+    const onChange = useDebounce((e) => {
+        dispatch({
+            type: FILTER_BY_SEARCH,
+            data: {
+                value: e.target.value
+            }
+        })
+    }, 300)
+
+
     return <div className="search-bar">
         <div className="search-bar__result">
             <span className="search-bar__text">
-                7,618 results found
+                {counterProducts > 0 ? `${counterProducts} results found` : ''} 
             </span>
             <a href="./favorite.html" className="reference">
                 <button className="search-bar__btn-favorite button">
@@ -16,7 +34,8 @@ function SearchBar(props) {
         </div>
         <form className="search-bar__form">
             <div className="search-bar__container">
-                <input className="search-bar__input" type="text" placeholder="Search" />
+                <input className="search-bar__input" type="text" placeholder="Search" onChange={onChange}
+                />
             </div>
         </form>
     </div>

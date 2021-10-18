@@ -1,13 +1,27 @@
 import "./FilterSlider.scss"
-import PropTypes from "prop-types";
 import {
   useState,
   useCallback,
   useEffect,
   useRef
 } from "react";
+import {
+  useDispatch,
+  useSelector
+} from "react-redux";
+import {
+  FILTER_BY_PRICE
+} from '../../store/actions/filter.js'
+import useDebounce from '../../store/helpersFn/debouncer.js'
 
-function FilterSlider({ min, max, onChange, title }) {
+function FilterSlider({ title }) {
+  const price = useSelector(state => state.data.price)
+  
+
+  const dispatch = useDebounce(useDispatch(), 100)
+  const min = price.min;
+  const max = price.max;
+
   const [minVal, setMinVal] = useState(min);
   const [maxVal, setMaxVal] = useState(max);
   const minValRef = useRef(min);
@@ -41,26 +55,30 @@ function FilterSlider({ min, max, onChange, title }) {
     }
   }, [maxVal, getPercent]);
 
-  // Get min and max values when their state changes
-  useEffect(() => {
-    onChange({ min: minVal, max: maxVal });
-  }, [minVal, maxVal, onChange]);
 
   return <>
     <div className="filter-container__title">
-            {title}
-        </div>
+      {title}
+    </div>
     <div className="filter-slider">
       <input
         type="range"
         min={min}
         max={max}
         value={minVal}
-        onChange={(event) => {
-          const value = Math.min(Number(event.target.value), maxVal - 1);
-          setMinVal(value);
-          minValRef.current = value;
-        }}
+        onChange={
+          (event) => {
+            const value = Math.min(Number(event.target.value), maxVal - 1);
+            setMinVal(value);
+            minValRef.current = value;
+            dispatch({
+              type: FILTER_BY_PRICE,
+              data: {
+                min: value,
+                max: maxVal
+              }
+            })
+          }}
         className="filter-slider__thumb filter-slider__thumb--left"
         style={{ zIndex: minVal > max - 100 && "5" }}
       />
@@ -73,6 +91,13 @@ function FilterSlider({ min, max, onChange, title }) {
           const value = Math.max(Number(event.target.value), minVal + 1);
           setMaxVal(value);
           maxValRef.current = value;
+          dispatch({
+            type: FILTER_BY_PRICE,
+            data: {
+              min: minVal,
+              max: value
+            }
+          })
         }}
         className="filter-slider__thumb filter-slider__thumb--right"
       />
@@ -87,10 +112,6 @@ function FilterSlider({ min, max, onChange, title }) {
   </>;
 };
 
-FilterSlider.propTypes = {
-  min: PropTypes.number.isRequired,
-  max: PropTypes.number.isRequired,
-  onChange: PropTypes.func.isRequired
-};
-
 export default FilterSlider;
+
+

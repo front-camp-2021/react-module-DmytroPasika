@@ -5,10 +5,10 @@ import {
     FilterForm
 } from '../index.js'
 
-function Filter(props) {
+function Filter() {
     return <div className="filter-container">
         <FilterHeader />
-        <FilterForm />
+        <FilterForm/>
         <BigButton />
     </div>
 }

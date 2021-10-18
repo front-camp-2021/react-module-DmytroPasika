@@ -5,7 +5,7 @@ import {
 } from '../index.js'
 
 
-function CardContainer(props) {
+function CardContainer() {
   return <div className='card-container'>
     <SearchBar />
     <CardList />

@@ -6,7 +6,7 @@ import {
 
 
 
-function Main(props) {
+function Main() {
     return <div className='main'>
     <Filter />
     <CardContainer />
