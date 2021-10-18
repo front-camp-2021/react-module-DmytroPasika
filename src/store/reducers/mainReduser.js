@@ -1,4 +1,34 @@
-const list = [
+import { 
+  SET_CURRENT_PAGE
+ } from '../actions/pagination.js'
+import { 
+  RESET_ALL_FILTERS,
+  FILTER_BY_SEARCH,
+  FILTER_BY_PRICE,
+  FILTER_BY_CHEXBOXES
+ } from '../actions/filter.js'
+import {
+  searchFilter,
+  FilterTypes
+ } from '../selectors/filter.js'
+
+export const initialState = {
+  price: {
+    min: 53,
+    max: 85000
+  },
+  checkbox: false,
+  counterProducts: 0,
+  activeFilters: {
+      brand: [],
+      category: [],
+      price: {
+        min: 53,
+        max: 85000
+      }
+    },
+  currentPage: 1,
+  products: [
     {
       "id": "76w0hz7015kkr9kjkav",
       "images": [
@@ -1146,6 +1176,48 @@ const list = [
       "category": "ram",
       "brand": "kingston"
     }
+  ],
+  brands: [
+    "Asus",
+    "Acer",
+    "Apple",
+    "Dell",
+    "Dynamode",
+    "Gigabyte",
+    "Kingston",
+    "Lenovo",
+    "Logitech",
+    "MSI",
+    "BenQ",
+    "A4Tech"
+  ],
+  categories: [
+    "Monitors",
+    "Laptops",
+    "Video cards",
+    "Gaming keyboards",
+    "Computer mouse",
+    "SSD",
+    "Sound cards",
+    "RAM"
   ]
-  
-  export default list;
+}
+
+  export default function mainReduser(state = initialState, action) {
+    switch (action.type) {
+      case SET_CURRENT_PAGE:
+        return {...state, currentPage: action.data.page};
+      case FILTER_BY_PRICE:
+      return searchFilter(initialState, action, FilterTypes.Price, state.activeFilters)
+      case FILTER_BY_SEARCH:
+      return searchFilter(initialState, action, FilterTypes.Search, state.activeFilters)
+      case FILTER_BY_CHEXBOXES:
+      return searchFilter(initialState, action, action.data.name, state.activeFilters)
+      case RESET_ALL_FILTERS:
+      return searchFilter(initialState, action, RESET_ALL_FILTERS, state.activeFilters)
+      default:
+         return state
+   }
+  };
+
+
