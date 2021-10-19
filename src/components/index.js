@@ -11,5 +11,7 @@ export * from './Card'
 export * from './CardList'
 export * from './SearchBar'
 export * from './Pagination'
+export * from './Favorite'
+export * from './NotFound'
 
 

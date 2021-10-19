@@ -1,7 +1,7 @@
 import _ from 'lodash'
-import {
-  RESET_ALL_FILTERS
-} from '../actions/filter.js'
+// import {
+//   RESET_ALL_FILTERS
+// } from '../actions/filter.js'
 export const FilterTypes = {
   Brand: 'brand',
   Category: 'category',

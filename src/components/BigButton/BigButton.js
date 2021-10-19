@@ -7,7 +7,7 @@ import {
     useDispatch
 } from "react-redux";
 
-function BigButton() {
+function BigButton({ title }) {
     const dispatch = useDispatch();
 
     return <button className="filter-container__btn-reset button"
@@ -15,7 +15,7 @@ function BigButton() {
             type: RESET_ALL_FILTERS
         })}
     >
-        <div className="filter-container__btn-label">CLEAR ALL FILTERS</div>
+        <div className="filter-container__btn-label">{title}</div>
     </button>;
 }
 

@@ -1,0 +1,12 @@
+@import '../../styles/breakpoints.scss';
+
+.favorite {
+    &__button-container{
+        width: 400px;
+    }
+    @media (max-width: map-get($breakpoints, md)) {
+        &__button-container{
+            width: 100%;
+        }
+    }
+}

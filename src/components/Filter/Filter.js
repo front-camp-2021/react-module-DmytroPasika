@@ -9,7 +9,7 @@ function Filter() {
     return <div className="filter-container">
         <FilterHeader />
         <FilterForm/>
-        <BigButton />
+        <BigButton title="CLEAR ALL FILTERS"/>
     </div>
 }
 

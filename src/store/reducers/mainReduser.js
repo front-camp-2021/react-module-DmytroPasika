@@ -1,18 +1,27 @@
-import { 
+import {
   SET_CURRENT_PAGE
- } from '../actions/pagination.js'
-import { 
+} from '../actions/pagination.js'
+import {
   RESET_ALL_FILTERS,
   FILTER_BY_SEARCH,
   FILTER_BY_PRICE,
   FILTER_BY_CHEXBOXES
- } from '../actions/filter.js'
+} from '../actions/filter.js'
 import {
   searchFilter,
   FilterTypes
- } from '../selectors/filter.js'
+} from '../selectors/filter.js'
+import {
+  ADD_TO_FAVORITES,
+  REMOVE_FROM_FAVORITES
+} from '../actions/card-lists.js'
+import {
+  addToFavorites,
+  removeFromFavorites
+} from '../selectors/cardList.js'
 
 export const initialState = {
+  favorites: [],
   price: {
     min: 53,
     max: 85000
@@ -20,13 +29,13 @@ export const initialState = {
   checkbox: false,
   counterProducts: 0,
   activeFilters: {
-      brand: [],
-      category: [],
-      price: {
-        min: 53,
-        max: 85000
-      }
-    },
+    brand: [],
+    category: [],
+    price: {
+      min: 53,
+      max: 85000
+    }
+  },
   currentPage: 1,
   products: [
     {
@@ -1203,21 +1212,25 @@ export const initialState = {
   ]
 }
 
-  export default function mainReduser(state = initialState, action) {
-    switch (action.type) {
-      case SET_CURRENT_PAGE:
-        return {...state, currentPage: action.data.page};
-      case FILTER_BY_PRICE:
+export default function mainReducer(state = initialState, action) {
+  switch (action.type) {
+    case SET_CURRENT_PAGE:
+      return { ...state, currentPage: action.data.page };
+    case FILTER_BY_PRICE:
       return searchFilter(initialState, action, FilterTypes.Price, state.activeFilters)
-      case FILTER_BY_SEARCH:
+    case FILTER_BY_SEARCH:
       return searchFilter(initialState, action, FilterTypes.Search, state.activeFilters)
-      case FILTER_BY_CHEXBOXES:
+    case FILTER_BY_CHEXBOXES:
       return searchFilter(initialState, action, action.data.name, state.activeFilters)
-      case RESET_ALL_FILTERS:
+    case RESET_ALL_FILTERS:
       return searchFilter(initialState, action, RESET_ALL_FILTERS, state.activeFilters)
-      default:
-         return state
-   }
-  };
+    case ADD_TO_FAVORITES:
+      return addToFavorites(action.data.id, state)
+    case REMOVE_FROM_FAVORITES:
+      return removeFromFavorites(action.data.id, state)
+    default:
+      return state
+  }
+};
 
 

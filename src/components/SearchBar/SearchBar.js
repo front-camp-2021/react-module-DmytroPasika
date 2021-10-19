@@ -5,6 +5,7 @@ import {
 import { FILTER_BY_SEARCH } from '../../store/actions/filter.js'
 import "./SearchBar.scss"
 import useDebounce from '../../store/helpersFn/debouncer.js'
+import { Link } from "react-router-dom";
 
 
 function SearchBar() {
@@ -26,11 +27,11 @@ function SearchBar() {
             <span className="search-bar__text">
                 {counterProducts > 0 ? `${counterProducts} results found` : ''} 
             </span>
-            <a href="./favorite.html" className="reference">
+            <Link to="/favorites" >
                 <button className="search-bar__btn-favorite button">
                     <img src="/img/heartWhite.svg" alt="" className="search-bar__favorite-image" />
                 </button>
-            </a>
+            </Link>
         </div>
         <form className="search-bar__form">
             <div className="search-bar__container">
