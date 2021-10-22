@@ -15,10 +15,9 @@ import {
 import useDebounce from '../../store/helpersFn/debouncer.js'
 
 function FilterSlider({ title }) {
-  const price = useSelector(state => state.data.price)
-  
+  const price = useSelector(state => state.price.price)
 
-  const dispatch = useDebounce(useDispatch(), 100)
+  const dispatch = useDebounce(useDispatch(), 200)
   const min = price.min;
   const max = price.max;
 
@@ -55,6 +54,30 @@ function FilterSlider({ title }) {
     }
   }, [maxVal, getPercent]);
 
+  const onChangeLeftThumb = (event) => {
+    const value = Math.min(Number(event.target.value), maxVal - 1);
+    setMinVal(value);
+    minValRef.current = value;
+    dispatch({
+      type: FILTER_BY_PRICE,
+      data: {
+        min: value,
+        max: maxVal
+      }
+    })
+  }
+  const onChangeRgihtThumb = (event) => {
+    const value = Math.max(Number(event.target.value), minVal + 1);
+    setMaxVal(value);
+    maxValRef.current = value;
+    dispatch({
+      type: FILTER_BY_PRICE,
+      data: {
+        min: minVal,
+        max: value
+      }
+    })
+  }
 
   return <>
     <div className="filter-container__title">
@@ -67,18 +90,7 @@ function FilterSlider({ title }) {
         max={max}
         value={minVal}
         onChange={
-          (event) => {
-            const value = Math.min(Number(event.target.value), maxVal - 1);
-            setMinVal(value);
-            minValRef.current = value;
-            dispatch({
-              type: FILTER_BY_PRICE,
-              data: {
-                min: value,
-                max: maxVal
-              }
-            })
-          }}
+          (event) => onChangeLeftThumb(event)}
         className="filter-slider__thumb filter-slider__thumb--left"
         style={{ zIndex: minVal > max - 100 && "5" }}
       />
@@ -87,18 +99,7 @@ function FilterSlider({ title }) {
         min={min}
         max={max}
         value={maxVal}
-        onChange={(event) => {
-          const value = Math.max(Number(event.target.value), minVal + 1);
-          setMaxVal(value);
-          maxValRef.current = value;
-          dispatch({
-            type: FILTER_BY_PRICE,
-            data: {
-              min: minVal,
-              max: value
-            }
-          })
-        }}
+        onChange={(event) => onChangeRgihtThumb(event)}
         className="filter-slider__thumb filter-slider__thumb--right"
       />
 

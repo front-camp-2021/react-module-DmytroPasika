@@ -13,7 +13,7 @@ import {
 } from "react-router-dom"
 
 function ShopPage() {
-
+  
   return (
     <BrowserRouter>
       <Header />

@@ -14,7 +14,7 @@ import './Card.scss'
 function Card({ props }) {
   const dispatch = useDispatch()
   const ref = useRef()
-  const favorites = useSelector( state => state.data.favorites.map(item => item.id))
+  const favorites = useSelector( state => state.productsList.favorites.map(item => item.id))
   const includesFavorites = favorites.includes(props.id)
   
   useEffect(() => {

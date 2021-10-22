@@ -13,7 +13,7 @@ import './Pagination.scss'
 
 function Pagination() {
     const totalPages = useSelector(getTotatalPagesCounter(ITEMS_PER_PAGE)) // get count of total pages
-    const currentPage = useSelector(state => state.data.currentPage)
+    const currentPage = useSelector(state => state.productsList.currentPage)
     const dispatch = useDispatch();
 
     const getPages = (pages = 0) => {

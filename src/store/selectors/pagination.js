@@ -1,3 +1,3 @@
 export const getTotatalPagesCounter = (itemsPerPage) => (state) => {
-    return Math.ceil(state.data.products.length / itemsPerPage)
+    return Math.ceil(state.productsList.filterListLength / itemsPerPage)
  }

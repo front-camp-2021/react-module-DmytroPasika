@@ -11,8 +11,8 @@ import {
 
 
 function FilterForm() {
-  const categories = useSelector(state => state.data.categories)
-  const brand = useSelector(state => state.data.brands)
+  const categories = useSelector(state => state.chexkboxes.categories)
+  const brand = useSelector(state => state.chexkboxes.brands)
 
   return <div className="filter-container__form-container">
     <form className="filter-container__form">

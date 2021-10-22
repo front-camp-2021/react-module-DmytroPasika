@@ -4,15 +4,16 @@ import {
     CardList
 } from '../index.js'
 import {
-    FAVORITE
+    FAVORITE,
+    REMOVE_ALL_FROM_FAVORITES
   } from '../../store/actions/card-lists.js'
 
 function Favorite() {
     return <>
         <div className="favorite__button-container">
-        <BigButton title="CLEAR ALL FAVORITES"/>
+        <BigButton title="CLEAR ALL FAVORITES" type={REMOVE_ALL_FROM_FAVORITES}/>
         </div>
-        <CardList type={FAVORITE}/>
+        <CardList type={FAVORITE} />
     </>
 }
 

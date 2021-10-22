@@ -2,11 +2,12 @@ import _ from 'lodash'
 
 export const getPageItems = ({
     currentPage,
-    itemsPerPage
-}) => (state) => {
+    itemsPerPage,
+    list
+}) => {
     const last = currentPage * itemsPerPage;
     const first = last - itemsPerPage;
-    return [...state.data.products.slice(first, last)]
+    return [...list.slice(first, last)]
 }
 
 export const addToFavorites = (id, state) => {
