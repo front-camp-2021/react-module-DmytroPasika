@@ -29,7 +29,7 @@
         justify-content: space-around;
         margin: 0px 17px;
         height: 40px;
-        width: 360px;
+        // width: 360px;
         background: map-get($colors,gray);
         border-radius: 20px;
         align-items: center;
@@ -44,7 +44,7 @@
 
     @media (max-width: map-get($breakpoints, lg)) {
         &__pages {
-            width: 80%;
+            // width: 80%;
             margin: 0px;
         }
     

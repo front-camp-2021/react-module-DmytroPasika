@@ -8,7 +8,7 @@ import {
   searchFilter,
   priceFilter,
   chexboxFilter
-} from '../selectors/filter.js'
+} from '../helpersFn/filter.js'
 import _ from 'lodash'
 
 export const initialState = {

@@ -8,12 +8,17 @@ import {
     ADD_TO_FAVORITES,
     REMOVE_FROM_FAVORITES,
     REMOVE_ALL_FROM_FAVORITES,
-    SET_CURRENT_LENGTH_FILTER_LIST
+    SET_CURRENT_LENGTH_FILTER_LIST,
+    REMOVE_ALL_FROM_CART,
+    REMOVE_FROM_CART,
+    ADD_TO_CART
 } from '../actions/card-lists.js'
 import {
     addToFavorites,
-    removeFromFavorites
-} from '../selectors/cardList.js'
+    removeFromFavorites,
+    addToCart,
+    removeFromCart
+} from '../helpersFn/cardList.js'
 import {
     GET_DATA,
     GET_PRODUCTS_DATA
@@ -27,6 +32,7 @@ export const initialState = {
     currentPage: 1,
     products: [],
     filterListLength: 100,
+    cart: []
 }
 
 
@@ -51,12 +57,22 @@ export default function products(state = initialState, action) {
 
         case REMOVE_FROM_FAVORITES:
             return removeFromFavorites(action.data.id, state)
+            
+        case ADD_TO_CART:
+            return addToCart(action.data.id, state)
+
+        case REMOVE_FROM_CART:
+            return removeFromCart(action.data.id, state)
 
         case SET_CURRENT_PAGE:
             return { ...state, currentPage: action.data.page }
 
         case REMOVE_ALL_FROM_FAVORITES:
             cloneState.favorites = []
+            return cloneState
+
+        case REMOVE_ALL_FROM_CART:
+            cloneState.cart = []
             return cloneState
 
         case SET_CURRENT_LENGTH_FILTER_LIST:

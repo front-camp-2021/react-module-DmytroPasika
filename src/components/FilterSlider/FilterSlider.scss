@@ -52,8 +52,12 @@
 
   /* For Firefox browsers */
   &__thumb::-moz-range-thumb {
+    background-color: white;
+    border: none;
     -webkit-appearance: none;
-    height: 4em;
+    -moz-appearance: none;
+    appearance: none;
+    height: 1.5em;
     width: 0.4em;
     background-image: url(./range-thumb-icon.svg);
     background-repeat: no-repeat;
@@ -62,10 +66,16 @@
     pointer-events: auto;
   }
 
+  &__thumb--right::-moz-range-thumb {
+    transform: rotate(180deg);
+    margin-top: -32px;
+  }
+
   &__thumb--right::-webkit-slider-thumb {
     transform: rotate(180deg);
     margin-top: -32px;
   }
+ 
 
   &__slider-track,
   &__slider-range,

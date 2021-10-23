@@ -1,15 +1,15 @@
-import "./Favorite.scss"
+import "./Cart.scss"
 import {
     BigButton,
     CardList
 } from '../index.js'
 import {
-    FAVORITE,
-    REMOVE_ALL_FROM_FAVORITES
+    REMOVE_ALL_FROM_CART,
+    CART
 } from '../../store/actions/card-lists.js'
 import { NavLink } from "react-router-dom";
 
-function Favorite() {
+function Cart() {
     return <>
         <div className="buttons-container-nav">
             <NavLink to='/'>
@@ -20,11 +20,12 @@ function Favorite() {
                 </button>
             </NavLink>
             <div className="favorite__button-container">
-                <BigButton title="CLEAR ALL FAVORITES" type={REMOVE_ALL_FROM_FAVORITES} />
+                <BigButton title="REMOVE ALL FROM CART" type={REMOVE_ALL_FROM_CART} />
             </div>
         </div>
-        <CardList type={FAVORITE} />
+
+        <CardList type={CART} />
     </>
 }
 
-export default Favorite;
+export default Cart;

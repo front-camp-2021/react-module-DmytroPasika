@@ -11,7 +11,7 @@ import {
 } from "react-redux";
 import { 
   getDataFromApi
- } from "../../store/selectors/getData.js";
+ } from "../../store/helpersFn/getData.js";
 
 
 function Main() {

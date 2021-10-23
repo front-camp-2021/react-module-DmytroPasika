@@ -6,27 +6,20 @@ import {
 import {
     resetDataFromFilters
 } from '../../store/helpersFn/resetData.js'
-import {
-    REMOVE_ALL_FROM_FAVORITES,
-} from '../../store/actions/card-lists.js'
 import { RESET_ALL_FILTERS } from '../../store/actions/filter.js'
 
 function BigButton({ title, type }) {
     const dispatch = useDispatch();
 
     const onClick = () => {
-        if (type === REMOVE_ALL_FROM_FAVORITES) {
-            dispatch({
-                type: REMOVE_ALL_FROM_FAVORITES
-            })
-        } else if(type === RESET_ALL_FILTERS) {
+        if (type === RESET_ALL_FILTERS) {
             resetDataFromFilters()
-            dispatch({
-                type: RESET_ALL_FILTERS
-            })
         }
+            dispatch({
+                type: type
+            })
     }
-   
+
     return <button className="filter-container__btn-reset button"
         onClick={() => onClick()}
     >

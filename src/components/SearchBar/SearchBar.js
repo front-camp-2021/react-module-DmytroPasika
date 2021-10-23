@@ -8,7 +8,7 @@ import {
 import "./SearchBar.scss"
 import useDebounce from '../../store/helpersFn/debouncer.js'
 import {
-    Link
+    NavLink
 } from "react-router-dom";
 
 function SearchBar() {
@@ -29,11 +29,19 @@ function SearchBar() {
             <span className="search-bar__text">
                 {counterProducts > 0 && counterProducts < 99 ? `${counterProducts} results found` : ''}
             </span>
-            <Link to="/favorites" >
-                <button className="search-bar__btn-favorite button">
-                    <img src="/img/heartWhite.svg" alt="" className="search-bar__favorite-image" />
-                </button>
-            </Link>
+            <div className='search-bar__container-nav'>
+                <NavLink to="/cart" >
+                    <button className="search-bar__btn-cart button">
+                        <img src="/img/cart4.svg" alt="cart logo" className="search-bar__cart-image" />
+                    </button>
+                </NavLink>
+                <NavLink to="/favorites" >
+                    <button className="search-bar__btn-favorite button">
+                        <img src="/img/heartWhite.svg" alt="heart logo" className="search-bar__favorite-image" />
+                    </button>
+                </NavLink>
+            </div>
+
         </div>
         <form className="search-bar__form">
             <div className="search-bar__container">

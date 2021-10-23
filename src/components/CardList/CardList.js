@@ -1,10 +1,14 @@
 import './CardList.scss'
 import { Card } from '../index.js'
 import { useDispatch, useSelector } from 'react-redux';
-import { getPageItems } from '../../store/selectors/cardList.js'
+import { getPageItems } from '../../store/helpersFn/cardList.js'
 import { ITEMS_PER_PAGE } from '../../store/actions/pagination.js'
-import { filter } from '../../store/selectors/filter.js'
-import { MAIN } from '../../store/actions/card-lists.js'
+import { filter } from '../../store/helpersFn/filter.js'
+import { 
+    MAIN,
+    FAVORITE,
+    CART
+ } from '../../store/actions/card-lists.js'
 import { SET_CURRENT_LENGTH_FILTER_LIST } from '../../store/actions/card-lists.js'
 import { SET_CURRENT_PAGE } from '../../store/actions/pagination.js'
 import { useEffect } from 'react';
@@ -14,6 +18,7 @@ function CardList({ type }) {
     const dispatch = useDispatch()
     const favoritePageItems = useSelector(state => state.productsList.favorites)
     const cardList = useSelector(state => state.productsList.products)
+    const cartList = useSelector(state => state.productsList.cart)
 
     const filteredList = useSelector(state => {
         const counterFilters = Object.keys(state.filters.activeFilters).length
@@ -51,8 +56,11 @@ function CardList({ type }) {
     return <div className='cards__list'>
         {type === MAIN ? page.map(item =>
             item.title ? <Card key={item.id} props={item} /> : undefined)
-            : favoritePageItems.map(item =>
+            : type === FAVORITE ? favoritePageItems.map(item =>
                 item.title ? <Card key={item.id} props={item} /> : undefined)
+                : type === CART ? cartList.map(item =>
+                    item.title ? <Card key={item.id} props={item} /> : undefined)
+                    : ''
         }
     </div>
 }

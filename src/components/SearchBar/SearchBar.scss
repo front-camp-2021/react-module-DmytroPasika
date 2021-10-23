@@ -4,6 +4,18 @@
 
 .search-bar {
     margin-right: 28px;
+    &__container-nav {
+      display: flex;
+      width: 100px;
+      justify-content: space-around;
+    }
+
+    &__btn-cart {
+      @include box-shadow();
+      height: 40px;
+      width: 46px;
+      // background: map-get($colors, main-color);
+    }
 
     &__btn-favorite {
         @include box-shadow();
@@ -52,18 +64,13 @@
     
     @media (max-width: map-get($breakpoints, md)) {
     margin-left: 28px;
-
-    &__result {
-        display: none;
-        }
     }
+
+  
 
     @media (max-width: map-get($breakpoints, sm)) {
     margin-left: 0px;
     margin-right: 0px;
-    &__result {
-        display: none;
-        }
     }
 
 }

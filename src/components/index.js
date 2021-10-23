@@ -13,5 +13,6 @@ export * from './SearchBar'
 export * from './Pagination'
 export * from './Favorite'
 export * from './NotFound'
-
+export * from './Cart'
+export * from './ItemPage'
 
