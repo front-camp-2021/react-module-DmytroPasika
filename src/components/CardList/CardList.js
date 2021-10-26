@@ -3,7 +3,10 @@ import { Card } from '../index.js'
 import { useDispatch, useSelector } from 'react-redux';
 import { getPageItems } from '../../store/helpersFn/cardList.js'
 import { ITEMS_PER_PAGE } from '../../store/actions/pagination.js'
-import { filter } from '../../store/helpersFn/filter.js'
+import {
+    filterFn,
+    FilterTypes
+} from '../../store/helpersFn/filter.js'
 import { 
     MAIN,
     FAVORITE,
@@ -13,6 +16,18 @@ import { SET_CURRENT_LENGTH_FILTER_LIST } from '../../store/actions/card-lists.j
 import { SET_CURRENT_PAGE } from '../../store/actions/pagination.js'
 import { useEffect } from 'react';
 
+function hasValue (key, value) {
+    switch (key) {
+        case FilterTypes.Brand:
+        case FilterTypes.Category:
+            return value.length
+        case FilterTypes.Price:
+            return true
+        default:
+            return value.length
+    }
+}
+
 
 function CardList({ type }) {
     const dispatch = useDispatch()
@@ -20,18 +35,13 @@ function CardList({ type }) {
     const cardList = useSelector(state => state.productsList.products)
     const cartList = useSelector(state => state.productsList.cart)
 
-    const filteredList = useSelector(state => {
-        const counterFilters = Object.keys(state.filters.activeFilters).length
-        return cardList.filter(item => {
-            let counter = null
-            for (const [key, value] of Object.entries(state.filters.activeFilters)) {
-                if (filter(item, key, value)) {
-                    counter++
-                }
-            }
-            return counter === counterFilters
-        })
-    })
+    const filteredList = useSelector(state => 
+        Object.entries(state.filters.activeFilters).reduce((filteredList, filter) => {
+            const [ key, value ] = filter
+            return hasValue(key, value) 
+                ? filteredList.filter(item => filterFn(item, key, value))
+                : filteredList
+        }, cardList))
 
     const page = getPageItems({
         currentPage: useSelector(state => state.productsList.currentPage),

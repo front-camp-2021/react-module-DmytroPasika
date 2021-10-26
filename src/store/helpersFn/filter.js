@@ -26,7 +26,7 @@ export const chexboxFilter = (state, action) => {
   return state
 }
 
-export const filter = (item, filterType, filterValues) => {
+export const filterFn = (item, filterType, filterValues) => {
   switch (filterType) {
     case FilterTypes.Brand:
     case FilterTypes.Category:
