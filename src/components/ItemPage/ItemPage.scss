@@ -1,0 +1,78 @@
+@import '../../styles/colors.scss';
+@import '../../styles/mixin.scss';
+@import '../../styles/breakpoints.scss';
+
+.item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &__actions {
+        margin: 32px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        max-width: 1000px;
+    }
+    &__header {
+        font-size: 28px;
+        font-weight: 600;
+    }
+
+    &__wishlist-btn {
+        width: 100%;
+        padding: 14px 0;
+        color: map-get($colors, black);
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+      }
+
+    &__add-btn {
+        width: 100%;
+        padding: 14px 0;
+        background: map-get($colors, main-color);
+        color: map-get($colors, white);
+        // border-bottom-right-radius: 8px;
+      }
+    &__btn-home {
+        width: 100%;
+        padding: 14px 0;
+        color: map-get($colors, black);
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+    }
+
+    &__image-container-all {
+        display: flex;
+        justify-content: space-around;
+        align-content: space-around;
+    }
+
+    &__image {
+        max-width: 600px;
+    }
+
+    @media (max-width: map-get($breakpoints, lg)) {
+        &__image {
+            max-width: 360px;
+        }
+        }
+    
+    @media (max-width: map-get($breakpoints, md)) {
+        &__image {
+            max-width: 320px;
+        }
+        &__image-container-all {
+            flex-direction: column;
+        }
+    }
+    
+    @media (max-width: map-get($breakpoints, sm)) {
+        &__image {
+            max-width: 250px;
+        }
+        &__image-container-all {
+            flex-direction: column;
+        }
+    }
+}

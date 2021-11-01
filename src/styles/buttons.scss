@@ -1,0 +1,27 @@
+@import './colors.scss';
+@import './mixin.scss';
+
+
+.button {
+    border: none;
+    cursor: pointer;
+  }
+
+.button-wish {
+  &__clear-item {
+    @include box-shadow();
+    background: map-get($colors, main-color);
+    margin-top: 60px;
+    width: 400px;
+    height: 56px;
+    margin-bottom: 20px;
+    margin-left: 33px;
+  }
+  
+
+  &__btn-label {
+    margin: 17px 0px;
+    font-size: 18px;
+    color: map-get($colors, white);
+  }
+}

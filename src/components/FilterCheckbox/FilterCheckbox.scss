@@ -1,0 +1,50 @@
+@import '../../styles/colors.scss';
+@import '../../styles/mixin.scss';
+
+.filter-container {
+    &__title {
+        font-weight: 600;
+        font-size: 18px;
+        padding-bottom: 10px;
+      }
+      
+    &__list {
+        list-style-type: none;
+        padding-left: 0;
+        margin-left: 0;
+      }
+    
+    &__checkbox-custom {
+        width: 19px;
+        height: 16px;
+        border: 1px solid map-get($colors, ligth-gray);
+      }
+
+    &__list input:checked + &__checkbox-custom {
+        background-color: map-get($colors, main-color);
+        border: 1px solid map-get($colors, main-color);
+      }
+
+
+    &__container-checkbox {
+        @include flex-btw();
+      }
+      
+    &__label {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+      }
+
+    &__checkbox {
+        display: none;
+      }
+
+    &__item-counter {
+        padding-right: 15px;
+    }
+
+    &__value {
+        margin-left: 12px;
+      }
+}

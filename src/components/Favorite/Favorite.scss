@@ -1,0 +1,31 @@
+@import '../../styles/breakpoints.scss';
+@import '../../styles/colors.scss';
+
+.favorite {
+    &__button-container{
+        width: 400px;
+    }
+    @media (max-width: map-get($breakpoints, md)) {
+        &__button-container{
+            width: 100%;
+        }
+    }
+}
+.buttons-container-nav {
+    display: flex;
+    flex-direction: column;
+    &__btn-home {
+        width: 400px;
+        border-radius: 8px;
+        margin-top: 22px;
+        font-size: 18px;
+    }
+    &__btn-label {
+        margin: 17px 0px;
+    }
+    @media (max-width: map-get($breakpoints, md)) {
+    &__btn-home{
+        width: 100%;
+    }
+    }
+}

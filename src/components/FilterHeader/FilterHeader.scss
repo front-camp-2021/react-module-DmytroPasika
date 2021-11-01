@@ -1,0 +1,20 @@
+@import '../../styles/colors.scss';
+@import '../../styles/mixin.scss';
+
+.filter-container {
+&__header {
+    @include flex-btw();
+    align-items: center;
+    padding-bottom: 16px;
+    background-color: map-get($colors , background-color);
+  }
+  &__text {
+    font-size: 18px;
+  }
+  &__btn {
+    @include box-shadow();
+    width: 45px;
+    height: 40px;
+    background: map-get($colors, white );
+  }
+}

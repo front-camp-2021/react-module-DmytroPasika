@@ -1,0 +1,76 @@
+@import '../../styles/colors.scss';
+@import '../../styles/mixin.scss';
+@import '../../styles/breakpoints.scss';
+
+.search-bar {
+    margin-right: 28px;
+    &__container-nav {
+      display: flex;
+      width: 100px;
+      justify-content: space-around;
+    }
+
+    &__btn-cart {
+      @include box-shadow();
+      height: 40px;
+      width: 46px;
+      // background: map-get($colors, main-color);
+    }
+
+    &__btn-favorite {
+        @include box-shadow();
+        height: 40px;
+        width: 46px;
+        background: map-get($colors, main-color);
+      }
+    
+    &__favorite-image {
+        height: 13px;
+        width: 15px;
+      }
+    
+    &__search-bar-container {
+        margin-right: 28px;
+      }
+
+    &__result {
+        @include flex-btw();
+        @include font-sh(18px,21px);
+        align-items: center;
+        height: 68px;
+        margin-top: 11px;
+      }
+
+    &__input {
+        @include font-sh(22px, 26px);
+        @include box-shadow();
+        background-image: url(./search.svg);
+        background-position: 98%;
+        background-repeat: no-repeat;
+        height: 62px;
+        width: 100%;
+
+        font-weight: 300;
+
+        border: none;
+
+        padding-left: 32px;
+        margin-top: 5px;
+      }
+
+    &__container {
+        display: flex;
+        }
+    
+    @media (max-width: map-get($breakpoints, md)) {
+    margin-left: 28px;
+    }
+
+  
+
+    @media (max-width: map-get($breakpoints, sm)) {
+    margin-left: 0px;
+    margin-right: 0px;
+    }
+
+}
